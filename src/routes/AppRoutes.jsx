@@ -10,7 +10,7 @@ import CartPage from "../pages/cart/CartPage";
 import CheckoutPage from "../pages/cart/CheckoutPage";
 import OrdersPage from "../components/UserComponents/OrdersPage";
 import ProfilePage from "../components/UserComponents/ProfilePage";
-import WishlistPage from "../components/UserComponents/wishlistPage";
+import WishlistPage from "../components/UserComponents/WishlistPage";
 import AdminRoutes from "../routes/AdminRoutes";
 
 import { Navigate } from "react-router-dom";
@@ -115,7 +115,7 @@ isAdmin
 />
 
 <Route
-path="/wishlist"
+path="/Wishlist"
 element={
 isAdmin
 ?
