@@ -68,11 +68,16 @@ const Login = ({
     }
 
     try {
-      const res = await fetch(
-        `https://umr-jewelers.onrender.com/users?phone=${phone}`
-      );
+      
+    const res = await fetch(
+  "https://umr-jewelers.onrender.com/users"
+);
 
-      const data = await res.json();
+const users = await res.json();
+
+const data = users.filter(
+  (u) => String(u.phone).trim() === String(phone).trim()
+);
 
       if (data.length === 0) {
         toast.success(
