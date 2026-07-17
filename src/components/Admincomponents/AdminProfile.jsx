@@ -15,7 +15,7 @@ export default function AdminProfile() {
   const adminId = "admin001";
 
   useEffect(() => {
-    fetch(`https://umr-jewelers.onrender.com//users/${adminId}`)
+    fetch(`https://umr-jewelers.onrender.com/users/${adminId}`)
       .then((res) => res.json())
       .then((data) =>
         setAdmin({

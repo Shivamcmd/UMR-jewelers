@@ -28,7 +28,7 @@ fetch(
 .then(res=>res.json()),
 
 fetch(
-"https://umr-jewelers.onrender.com//users"
+"https://umr-jewelers.onrender.com/users"
 )
 .then(res=>res.json())
 
@@ -60,7 +60,7 @@ async(id,newStatus)=>{
 
 await fetch(
 
-`https://umr-jewelers.onrender.com//orders/${id}`,
+`https://umr-jewelers.onrender.com/orders/${id}`,
 
 {
 
