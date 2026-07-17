@@ -42,10 +42,10 @@ useEffect(() => {
 
 Promise.all([
 
-fetch("http://localhost:5000/users")
+fetch("https://umr-jewelers.onrender.com/users")
 .then(res => res.json()),
 
-fetch("http://localhost:5000/products")
+fetch("https://umr-jewelers.onrender.com/products")
 .then(res => res.json())
 
 ])

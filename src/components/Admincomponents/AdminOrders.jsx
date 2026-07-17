@@ -23,12 +23,12 @@ useEffect(()=>{
 Promise.all([
 
 fetch(
-"http://localhost:5000/orders"
+"https://umr-jewelers.onrender.com/orders"
 )
 .then(res=>res.json()),
 
 fetch(
-"http://localhost:5000/users"
+"https://umr-jewelers.onrender.com//users"
 )
 .then(res=>res.json())
 
@@ -60,7 +60,7 @@ async(id,newStatus)=>{
 
 await fetch(
 
-`http://localhost:5000/orders/${id}`,
+`https://umr-jewelers.onrender.com//orders/${id}`,
 
 {
 

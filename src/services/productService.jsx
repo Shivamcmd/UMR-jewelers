@@ -1,5 +1,5 @@
 const API =
-"http://localhost:5000/products";
+"https://umr-jewelers.onrender.com/products";
 
 
 // GET PRODUCTS

@@ -14,12 +14,12 @@ export default function GoldRates() {
 
   useEffect(() => {
 
-    fetch("http://localhost:5000/metalPrices")
+    fetch("https://umr-jewelers.onrender.com/metalPrices")
   .then((res) => res.json())
   .then(setMetalPrice)
   .catch(console.error);
 
-    fetch("http://localhost:5000/cityRates")
+    fetch("https://umr-jewelers.onrender.com/cityRates")
       .then((res) => res.json())
       .then(setCityRates);
 

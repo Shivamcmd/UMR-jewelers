@@ -93,7 +93,7 @@ useRef(null);
   // FETCH PRODUCT
   useEffect(() => {
     fetch(
-      "http://localhost:5000/products"
+      "https://umr-jewelers.onrender.com/products"
     )
       .then((res) => res.json())
       .then((data) => {
@@ -112,7 +112,7 @@ useRef(null);
     if (!product?.id) return;
 
     fetch(
-      `http://localhost:5000/reviews?productId=${product.id}`
+      `https://umr-jewelers.onrender.com/reviews?productId=${product.id}`
     )
       .then((res) => res.json())
       .then((data) =>
@@ -1050,7 +1050,7 @@ mt-8
                                 onClick={() => {
 
                                   fetch(
-                                    `http://localhost:5000/reviews/${review.id}`,
+                                    `https://umr-jewelers.onrender.com/reviews/${review.id}`,
                                     {
                                       method:
                                         "DELETE",
@@ -1198,7 +1198,7 @@ mt-8
                                     };
 
                                   fetch(
-                                    `http://localhost:5000/reviews/${review.id}`,
+                                    `https://umr-jewelers.onrender.com/reviews/${review.id}`,
                                     {
                                       method:
                                         "PUT",
@@ -1449,7 +1449,7 @@ mt-8
                     };
 
                   fetch(
-                    "http://localhost:5000/reviews",
+                    "https://umr-jewelers.onrender.com/reviews",
                     {
                       method:
                         "POST",
@@ -1500,7 +1500,7 @@ const avgRating =
 ).toFixed(1);
 
 fetch(
-  `http://localhost:5000/products/${product.id}`,
+  `https://umr-jewelers.onrender.com/products/${product.id}`,
   {
     method: "PATCH",
     headers: {

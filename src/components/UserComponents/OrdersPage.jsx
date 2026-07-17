@@ -58,7 +58,7 @@ const [reviewText, setReviewText] =
 
           const res =
             await fetch(
-              `http://localhost:5000/users/${user.id}`
+              `https://umr-jewelers.onrender.com/users/${user.id}`
             );
 
           const data =
@@ -170,7 +170,7 @@ useEffect(() => {
 
      const res =
 await fetch(
-"http://localhost:5000/siteReviews"
+"https://umr-jewelers.onrender.com/siteReviews"
 );
 
       const reviews =
@@ -189,7 +189,7 @@ if (existingReview) {
   // UPDATE EXISTING REVIEW
 
 await fetch(
-`http://localhost:5000/siteReviews/${existingReview.id}`,
+`https://umr-jewelers.onrender.com/siteReviews/${existingReview.id}`,
     {
       method: "PUT",
 
@@ -224,7 +224,7 @@ user?.profilePic || "",
   // CREATE NEW REVIEW
 
  await fetch(
-"http://localhost:5000/siteReviews",
+"https://umr-jewelers.onrender.com/siteReviews",
 {
 method:"POST",
 
@@ -276,7 +276,7 @@ const handleDeleteOrder =
         );
 
       await fetch(
-        `http://localhost:5000/users/${user.id}`,
+        `https://umr-jewelers.onrender.com/users/${user.id}`,
         {
           method: "PATCH",
 

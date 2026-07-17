@@ -81,7 +81,7 @@ useEffect(() => {
 
         const res =
           await fetch(
-            `http://localhost:5000/users/${user?.id}`
+            `https://umr-jewelers.onrender.com/users/${user?.id}`
           );
 
         const data =
@@ -174,7 +174,7 @@ if (!/^\d{6}$/.test(form.pincode)) {
 
       const res =
         await fetch(
-          `http://localhost:5000/users/${user?.id}`
+          `https://umr-jewelers.onrender.com/users/${user?.id}`
         );
 
       const userData =
@@ -225,7 +225,7 @@ if (!/^\d{6}$/.test(form.pincode)) {
       }
 
     const patchRes = await fetch(
-  `http://localhost:5000/users/${user.id}`,
+  `https://umr-jewelers.onrender.com/users/${user.id}`,
   {
     method: "PATCH",
     headers: {
@@ -279,7 +279,7 @@ const handleDeleteAddress =
         );
 
       await fetch(
-        `http://localhost:5000/users/${user.id}`,
+        `https://umr-jewelers.onrender.com/users/${user.id}`,
         {
           method: "PATCH",
 
@@ -392,7 +392,7 @@ const handleOrder = async () => {
   try {
 
     const res = await fetch(
-      `http://localhost:5000/users/${user.id}`
+      `https://umr-jewelers.onrender.com/users/${user.id}`
     );
 
     const userData = await res.json();
@@ -403,7 +403,7 @@ const handleOrder = async () => {
     ];
 
     await fetch(
-      `http://localhost:5000/users/${user.id}`,
+      `https://umr-jewelers.onrender.com/users/${user.id}`,
       {
         method: "PATCH",
 
@@ -472,7 +472,7 @@ navigate("/orders", {
 
         const res =
           await fetch(
-            `http://localhost:5000/users/${user.id}`
+            `https://umr-jewelers.onrender.com/users/${user.id}`
           );
 
         const userData =
@@ -490,7 +490,7 @@ navigate("/orders", {
         ];
 
         await fetch(
-          `http://localhost:5000/users/${user.id}`,
+          `https://umr-jewelers.onrender.com/users/${user.id}`,
           {
             method: "PATCH",
 

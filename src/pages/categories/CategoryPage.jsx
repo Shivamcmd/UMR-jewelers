@@ -35,7 +35,7 @@ useEffect(() => {
 }, [slug]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("https://umr-jewelers.onrender.com//products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);

@@ -111,7 +111,7 @@ const handleSave = async () => {
   try {
 
     const res = await fetch(
-      `http://localhost:5000/users/${user.id}`,
+      `https://umr-jewelers.onrender.com/users/${user.id}`,
       {
         method: "PATCH",
         headers: {

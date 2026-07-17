@@ -38,23 +38,23 @@ useEffect(()=>{
 Promise.all([
 
 fetch(
-"http://localhost:5000/products"
+"https://umr-jewelers.onrender.com/products"
 ).then(r=>r.json()),
 
 fetch(
-"http://localhost:5000/users"
+"https://umr-jewelers.onrender.com/users"
 ).then(r=>r.json()),
 
 fetch(
-"http://localhost:5000/orders"
+"https://umr-jewelers.onrender.com/orders"
 ).then(r=>r.json()),
 
 fetch(
-"http://localhost:5000/reviews"
+"https://umr-jewelers.onrender.com/reviews"
 ).then(r=>r.json()),
 
 fetch(
-"http://localhost:5000/categories"
+"https://umr-jewelers.onrender.com/categories"
 ).then(r=>r.json())
 
 ])

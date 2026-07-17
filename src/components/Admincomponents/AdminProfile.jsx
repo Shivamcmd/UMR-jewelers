@@ -15,7 +15,7 @@ export default function AdminProfile() {
   const adminId = "admin001";
 
   useEffect(() => {
-    fetch(`http://localhost:5000/users/${adminId}`)
+    fetch(`https://umr-jewelers.onrender.com//users/${adminId}`)
       .then((res) => res.json())
       .then((data) =>
         setAdmin({
@@ -33,7 +33,7 @@ const saveProfile = async () => {
 try {
 
 await fetch(
-`http://localhost:5000/users/${adminId}`,
+`https://umr-jewelers.onrender.com/users/${adminId}`,
 {
 method:"PATCH",
 

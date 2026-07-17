@@ -69,7 +69,7 @@ const Login = ({
 
     try {
       const res = await fetch(
-        `http://localhost:5000/users?phone=${phone}`
+        `https://umr-jewelers.onrender.com/users?phone=${phone}`
       );
 
       const data = await res.json();

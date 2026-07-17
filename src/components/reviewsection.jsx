@@ -60,7 +60,7 @@ useEffect(() => {
         const res =
           await 
          fetch(
-"http://localhost:5000/siteReviews"
+"https://umr-jewelers.onrender.com/siteReviews"
 );
 
      const data = await res.json();

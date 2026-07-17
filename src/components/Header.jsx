@@ -184,7 +184,7 @@ loadUser
 },[]);
 
 useEffect(() => {
-  fetch("http://localhost:5000/metalPrices")
+  fetch("https://umr-jewelers.onrender.com/metalPrices")
     .then((res) => res.json())
     .then((data) => setMetalPrice(data))
     .catch((err) => console.log(err));

@@ -63,7 +63,7 @@ const Register = ({
     };
 
     await fetch(
-      "http://localhost:5000/users",
+      "https://umr-jewelers.onrender.com/users",
       {
         method: "POST",
 

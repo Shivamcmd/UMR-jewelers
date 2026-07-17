@@ -18,7 +18,7 @@ useState("all");
 useEffect(()=>{
 
 fetch(
-"http://localhost:5000/users"
+"https://umr-jewelers.onrender.com/users"
 )
 
 .then(res=>res.json())
@@ -44,7 +44,7 @@ async(id,current)=>{
 
 await fetch(
 
-`http://localhost:5000/users/${id}`,
+`https://umr-jewelers.onrender.com/users/${id}`,
 
 {
 
@@ -97,7 +97,7 @@ async(id)=>{
 
 await fetch(
 
-`http://localhost:5000/users/${id}`,
+`https://umr-jewelers.onrender.com/users/${id}`,
 
 {
 method:"DELETE"
