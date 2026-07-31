@@ -10,6 +10,7 @@ LogOut,
 Settings,
 Menu,
 X,
+Gem,
 } from "lucide-react";
 
 import { useLocation } from "react-router-dom";
@@ -509,6 +510,48 @@ transition-all
   </div>
 
 </div>
+
+<Link
+  to="/schemes"
+  className="
+  hidden
+  md:flex
+
+  items-center
+  gap-2
+
+  h-[38px]
+  px-4
+
+  rounded-full
+
+  bg-gradient-to-r
+  from-[#fff8ea]
+  to-[#f8efd8]
+
+  border
+  border-[#ead7a3]
+
+  text-[#9b7b36]
+
+  font-medium
+  text-[13px]
+
+  shadow-sm
+
+  hover:shadow-md
+  hover:border-[#c9a234]
+  hover:scale-[1.03]
+
+  transition-all
+"
+>
+
+  <Gem size={17} />
+
+  <span>Schemes</span>
+
+</Link>
 
           {/* WISHLIST */}
 

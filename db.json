@@ -75,6 +75,9 @@
           }
         }
       ],
+      "activeScheme": null,
+
+  "schemeHistory": [],
       "totalSpent": 0,
       "savedAddresses": [
         {
@@ -117,6 +120,9 @@
       "phone": "9557995732",
       "role": "user",
       "createdAt": "2026-06-02",
+      "activeScheme": null,
+
+  "schemeHistory": [],
       "isBlocked": false,
       "orders": [
         {

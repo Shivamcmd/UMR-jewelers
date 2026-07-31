@@ -560,8 +560,95 @@ justify-center
 
           <div className="mt-8 space-y-5">
 
-            {orders.map((order) => (
+            {orders.map((order) =>
 
+  order.type === "scheme" ? (
+
+    // ===== SCHEME ORDER CARD =====
+
+    <div
+      key={order.id}
+      className="rounded-[28px] border border-[#f3df9b] bg-[#fffdf8] shadow-md p-6"
+    >
+      <div className="flex items-center justify-between flex-wrap gap-4">
+
+        <div>
+          <div className="flex items-center gap-3">
+            <Gem className="text-[#c9a227]" size={28} />
+
+            <div>
+              <h2 className="text-2xl font-bold">
+                {order.schemeName}
+              </h2>
+
+              <p className="text-sm text-gray-500">
+                Gold Saving Scheme
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-5 space-y-2 text-sm">
+
+            <p>
+              <strong>Monthly Amount:</strong>
+              ₹{order.monthlyAmount}
+            </p>
+
+            <p>
+              <strong>Duration:</strong>
+              {order.duration} Months
+            </p>
+
+            <p>
+              <strong>Current Installment:</strong>
+              {order.installment}
+            </p>
+
+            <p>
+              <strong>Status:</strong>
+              <span className="text-green-600 font-semibold">
+                {order.status}
+              </span>
+            </p>
+
+            <p>
+              <strong>Payment:</strong>
+              {order.paymentStatus}
+            </p>
+
+            <p>
+              <strong>Joined On:</strong>
+              {order.orderDate}
+            </p>
+
+          </div>
+        </div>
+
+        <div className="text-right">
+
+          <h2 className="text-3xl font-bold text-[#c9a227]">
+            ₹{order.monthlyAmount}
+          </h2>
+
+          <p className="text-sm text-gray-500">
+            per month
+          </p>
+
+          <button
+            onClick={() => handleDeleteOrder(order.id)}
+            className="mt-6 px-5 h-11 rounded-xl bg-red-600 text-white"
+          >
+            Leave Scheme
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+
+  ) : (
+
+    // EXISTING PRODUCT ORDER CARD
               <div
                 key={order.id}
                 className="

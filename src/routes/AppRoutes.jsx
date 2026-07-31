@@ -3,6 +3,7 @@ import Home from "../pages/home";
 import About from "../pages/about";
 import Contact from "../pages/contact";
 import GoldRates from "../pages/GoldRates";
+import Schemes from "../components/Schemes";
 
 import CategoryPage from "../pages/categories/CategoryPage";
 import ProductDetails from "../pages/categories/ProductDetails"; // ✅ ADD THIS
@@ -31,6 +32,7 @@ user?.role === "admin";
       <Route path="/contact" element={<Contact />} />
       <Route path="/category/:slug" element={<CategoryPage />} />
       <Route path="/gold-rates" element={<GoldRates />} />
+      <Route path="/schemes" element={<Schemes />} />
 {/* ADMIN */}
 
 <Route
