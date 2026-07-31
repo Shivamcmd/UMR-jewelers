@@ -8,6 +8,7 @@ import {
   User,
   Save,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 import {
   useEffect,
@@ -20,6 +21,7 @@ export default function ProfilePage() {
 
   const [user, setUser] =
     useState(null);
+    const navigate = useNavigate();
 
   const [formData, setFormData] =
     useState({
