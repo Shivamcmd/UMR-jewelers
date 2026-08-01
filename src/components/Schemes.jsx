@@ -96,48 +96,49 @@ if (!window.Razorpay) {
     name: "UMR Jewellers",
     description: selectedScheme.name,
 
- handler: async function (response) {
+// ---------- JOIN SCHEME (first time) ----------
+handler: async function (response) {
   try {
     const res = await fetch(
       `https://umr-jewelers.onrender.com/users/${user.id}`
     );
     const userData = await res.json();
 
-    const updatedScheme = {
-      ...userData.activeScheme,
-      installmentsPaid: userData.activeScheme.installmentsPaid + 1,
+    const activeScheme = {
+      ...schemeOrder,
+      razorpayPaymentId: response.razorpay_payment_id,
+      installmentsPaid: 1,
       installments: [
-        ...userData.activeScheme.installments,
         {
-          month: userData.activeScheme.installmentsPaid + 1,
-          amount: userData.activeScheme.monthlyAmount,
+          month: 1,
+          amount: selectedScheme.amount,
           paymentId: response.razorpay_payment_id,
           date: new Date().toLocaleString(),
         },
       ],
     };
 
-    // ONE PATCH only — this is the one that should persist
     await fetch(
       `https://umr-jewelers.onrender.com/users/${user.id}`,
       {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ activeScheme: updatedScheme }),
+        body: JSON.stringify({ activeScheme }),
       }
     );
 
-    setActiveScheme(updatedScheme);
-    setUser({ ...userData, activeScheme: updatedScheme });
-
     localStorage.setItem(
       "user",
-      JSON.stringify({ ...userData, activeScheme: updatedScheme })
+      JSON.stringify({ ...userData, activeScheme })
     );
 
-    toast.success("Installment Paid Successfully 🎉");
+    toast.success("Scheme Joined Successfully 🎉");
+    setShowModal(false);
+    setActiveScheme(activeScheme);
+    setUser({ ...userData, activeScheme });
+    navigate("/schemes");
   } catch (err) {
-    console.error(err);
+    console.log(err);
     toast.error("Something went wrong");
   }
 },
@@ -174,87 +175,52 @@ const handleInstallmentPayment = () => {
     name: "UMR Jewellers",
     description: `${activeScheme.schemeName} Installment`,
 
-    handler: async function (response) {
-      try {
-        const res = await fetch(
-  `https://umr-jewelers.onrender.com/users/${user.id}`
-);
+   // ---------- PAY NEXT INSTALLMENT ----------
+handler: async function (response) {
+  try {
+    const res = await fetch(
+      `https://umr-jewelers.onrender.com/users/${user.id}`
+    );
+    const userData = await res.json();
 
-const userData = await res.json();
+    const updatedScheme = {
+      ...userData.activeScheme,
+      installmentsPaid: userData.activeScheme.installmentsPaid + 1,
+      installments: [
+        ...userData.activeScheme.installments,
+        {
+          month: userData.activeScheme.installmentsPaid + 1,
+          amount: userData.activeScheme.monthlyAmount,
+          paymentId: response.razorpay_payment_id,
+          date: new Date().toLocaleString(),
+        },
+      ],
+    };
 
-const updatedScheme = {
-  ...userData.activeScheme,
-
-  installmentsPaid:
-    userData.activeScheme.installmentsPaid + 1,
-
-  installments: [
-    ...userData.activeScheme.installments,
-
-    {
-      month:
-        userData.activeScheme.installmentsPaid + 1,
-
-      amount: userData.activeScheme.monthlyAmount,
-
-      paymentId: response.razorpay_payment_id,
-
-      date: new Date().toLocaleString(),
-    },
-  ],
-};
-await fetch(
-  `https://umr-jewelers.onrender.com/users/${user.id}`,
-  {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      activeScheme: updatedScheme,
-    }),
-  }
-);
-
-const patchRes = await fetch(
-  `https://umr-jewelers.onrender.com/users/${user.id}`,
-  {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      activeScheme,
-    }),
-  }
-);
-
-console.log("PATCH STATUS:", patchRes.status);
-
-const patchData = await patchRes.json();
-console.log("PATCH RESPONSE:", patchData);
-
-setActiveScheme(updatedScheme);
-
-setUser({
-  ...userData,
-  activeScheme: updatedScheme,
-});
-
-localStorage.setItem(
-  "user",
-  JSON.stringify({
-    ...userData,
-    activeScheme: updatedScheme,
-  })
-);
-
-toast.success("Installment Paid Successfully 🎉");
-      } catch (err) {
-        console.error(err);
-        toast.error("Something went wrong");
+    // ✅ ONLY ONE PATCH — do not send another PATCH after this
+    await fetch(
+      `https://umr-jewelers.onrender.com/users/${user.id}`,
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ activeScheme: updatedScheme }),
       }
-    },
+    );
+
+    setActiveScheme(updatedScheme);
+    setUser({ ...userData, activeScheme: updatedScheme });
+
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ ...userData, activeScheme: updatedScheme })
+    );
+
+    toast.success("Installment Paid Successfully 🎉");
+  } catch (err) {
+    console.error(err);
+    toast.error("Something went wrong");
+  }
+},
 
     theme: {
       color: "#c8a24b",
