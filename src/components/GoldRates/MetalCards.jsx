@@ -3,8 +3,8 @@ import {
   ArrowDownRight,
 } from "lucide-react";
 
-import gold24k from "../assets/24kgold.jpg";
-import silverImg from "../assets/silver.jpg";
+import gold24k from "../../assets/24kgold.jpg";
+import silverImg from "../../assets/silver.jpg";
 
 export default function MetalCards({ metalPrice }) {
   if (!metalPrice) return null;
