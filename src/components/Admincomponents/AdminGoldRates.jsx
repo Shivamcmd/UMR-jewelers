@@ -46,7 +46,6 @@ export default function AdminGoldRates() {
 
   // ================= METAL PRICE HANDLERS =================
   const handleMetalChange = (path, value) => {
-    // path like "gold.24k" or "silver"
     setMetalPrice((prev) => {
       const updated = { ...prev };
       if (path.startsWith("gold.")) {
@@ -168,23 +167,25 @@ export default function AdminGoldRates() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-[70vh]">
+      <div className="flex justify-center items-center h-[70vh] text-sm sm:text-base">
         Loading Admin Panel...
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#faf8f5] py-10 px-4">
+    <div className="min-h-screen bg-[#faf8f5] py-6 sm:py-10 px-3 sm:px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-3xl font-bold text-[#222]">
+
+        {/* HEADER */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[#222]">
             Gold Rates — Admin Panel
           </h1>
 
           <button
             onClick={fetchAll}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-[#eadfce] bg-white hover:bg-[#faf5ea] text-sm font-medium"
+            className="flex items-center justify-center gap-2 px-4 py-2 rounded-xl border border-[#eadfce] bg-white hover:bg-[#faf5ea] text-sm font-medium w-full sm:w-auto"
           >
             <RefreshCw size={16} />
             Refresh
@@ -192,55 +193,55 @@ export default function AdminGoldRates() {
         </div>
 
         {/* ================= METAL PRICES ================= */}
-        <div className="bg-white rounded-3xl border border-[#eadfce] p-6 mb-8 shadow-sm">
-          <h2 className="text-xl font-semibold text-[#222] mb-5">
+        <div className="bg-white rounded-2xl sm:rounded-3xl border border-[#eadfce] p-4 sm:p-6 mb-6 sm:mb-8 shadow-sm">
+          <h2 className="text-lg sm:text-xl font-semibold text-[#222] mb-4 sm:mb-5">
             Metal Prices (per gram)
           </h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-5">
             <div>
-              <label className="text-sm text-gray-500">24K Gold (₹)</label>
+              <label className="text-xs sm:text-sm text-gray-500">24K Gold (₹)</label>
               <input
                 type="number"
                 value={metalPrice?.gold?.["24k"] ?? ""}
                 onChange={(e) =>
                   handleMetalChange("gold.24k", e.target.value)
                 }
-                className="mt-1 w-full h-11 px-3 rounded-xl border border-[#e9dece] bg-[#fcfbf8] outline-none"
+                className="mt-1 w-full h-10 sm:h-11 px-3 rounded-xl border border-[#e9dece] bg-[#fcfbf8] outline-none text-sm"
               />
             </div>
 
             <div>
-              <label className="text-sm text-gray-500">22K Gold (₹)</label>
+              <label className="text-xs sm:text-sm text-gray-500">22K Gold (₹)</label>
               <input
                 type="number"
                 value={metalPrice?.gold?.["22k"] ?? ""}
                 onChange={(e) =>
                   handleMetalChange("gold.22k", e.target.value)
                 }
-                className="mt-1 w-full h-11 px-3 rounded-xl border border-[#e9dece] bg-[#fcfbf8] outline-none"
+                className="mt-1 w-full h-10 sm:h-11 px-3 rounded-xl border border-[#e9dece] bg-[#fcfbf8] outline-none text-sm"
               />
             </div>
 
             <div>
-              <label className="text-sm text-gray-500">18K Gold (₹)</label>
+              <label className="text-xs sm:text-sm text-gray-500">18K Gold (₹)</label>
               <input
                 type="number"
                 value={metalPrice?.gold?.["18k"] ?? ""}
                 onChange={(e) =>
                   handleMetalChange("gold.18k", e.target.value)
                 }
-                className="mt-1 w-full h-11 px-3 rounded-xl border border-[#e9dece] bg-[#fcfbf8] outline-none"
+                className="mt-1 w-full h-10 sm:h-11 px-3 rounded-xl border border-[#e9dece] bg-[#fcfbf8] outline-none text-sm"
               />
             </div>
 
             <div>
-              <label className="text-sm text-gray-500">Silver (₹)</label>
+              <label className="text-xs sm:text-sm text-gray-500">Silver (₹)</label>
               <input
                 type="number"
                 value={metalPrice?.silver ?? ""}
                 onChange={(e) => handleMetalChange("silver", e.target.value)}
-                className="mt-1 w-full h-11 px-3 rounded-xl border border-[#e9dece] bg-[#fcfbf8] outline-none"
+                className="mt-1 w-full h-10 sm:h-11 px-3 rounded-xl border border-[#e9dece] bg-[#fcfbf8] outline-none text-sm"
               />
             </div>
           </div>
@@ -248,7 +249,7 @@ export default function AdminGoldRates() {
           <button
             onClick={saveMetalPrice}
             disabled={savingMetal}
-            className="mt-6 flex items-center gap-2 px-6 h-11 rounded-xl bg-[#c8a24a] text-white font-medium disabled:opacity-60"
+            className="mt-5 sm:mt-6 flex items-center justify-center gap-2 px-6 h-11 rounded-xl bg-[#c8a24a] text-white font-medium disabled:opacity-60 w-full sm:w-auto text-sm sm:text-base"
           >
             <Save size={16} />
             {savingMetal ? "Saving..." : "Save Metal Prices"}
@@ -256,12 +257,13 @@ export default function AdminGoldRates() {
         </div>
 
         {/* ================= CITY RATES ================= */}
-        <div className="bg-white rounded-3xl border border-[#eadfce] p-6 shadow-sm">
-          <h2 className="text-xl font-semibold text-[#222] mb-5">
+        <div className="bg-white rounded-2xl sm:rounded-3xl border border-[#eadfce] p-4 sm:p-6 shadow-sm">
+          <h2 className="text-lg sm:text-xl font-semibold text-[#222] mb-4 sm:mb-5">
             City-wise Rates
           </h2>
 
-          <div className="overflow-x-auto">
+          {/* ===== DESKTOP TABLE (md and up) ===== */}
+          <div className="hidden md:block overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="text-left text-gray-500 border-b border-[#eee3d2]">
@@ -280,11 +282,7 @@ export default function AdminGoldRates() {
                       <input
                         value={city.city}
                         onChange={(e) =>
-                          handleCityFieldChange(
-                            city.id,
-                            "city",
-                            e.target.value
-                          )
+                          handleCityFieldChange(city.id, "city", e.target.value)
                         }
                         className="w-full h-9 px-2 rounded-lg border border-[#e9dece] bg-[#fcfbf8] outline-none"
                       />
@@ -294,11 +292,7 @@ export default function AdminGoldRates() {
                         type="number"
                         value={city.gold24}
                         onChange={(e) =>
-                          handleCityFieldChange(
-                            city.id,
-                            "gold24",
-                            e.target.value
-                          )
+                          handleCityFieldChange(city.id, "gold24", e.target.value)
                         }
                         className="w-24 h-9 px-2 rounded-lg border border-[#e9dece] bg-[#fcfbf8] outline-none"
                       />
@@ -308,11 +302,7 @@ export default function AdminGoldRates() {
                         type="number"
                         value={city.gold22}
                         onChange={(e) =>
-                          handleCityFieldChange(
-                            city.id,
-                            "gold22",
-                            e.target.value
-                          )
+                          handleCityFieldChange(city.id, "gold22", e.target.value)
                         }
                         className="w-24 h-9 px-2 rounded-lg border border-[#e9dece] bg-[#fcfbf8] outline-none"
                       />
@@ -322,11 +312,7 @@ export default function AdminGoldRates() {
                         type="number"
                         value={city.gold18}
                         onChange={(e) =>
-                          handleCityFieldChange(
-                            city.id,
-                            "gold18",
-                            e.target.value
-                          )
+                          handleCityFieldChange(city.id, "gold18", e.target.value)
                         }
                         className="w-24 h-9 px-2 rounded-lg border border-[#e9dece] bg-[#fcfbf8] outline-none"
                       />
@@ -408,6 +394,135 @@ export default function AdminGoldRates() {
                 </tr>
               </tbody>
             </table>
+          </div>
+
+          {/* ===== MOBILE CARD LIST (below md) ===== */}
+          <div className="md:hidden space-y-4">
+            {cityRates.map((city) => (
+              <div
+                key={city.id}
+                className="rounded-2xl border border-[#eee3d2] bg-[#fcfbf8] p-4"
+              >
+                <div className="mb-3">
+                  <label className="text-xs text-gray-500">City</label>
+                  <input
+                    value={city.city}
+                    onChange={(e) =>
+                      handleCityFieldChange(city.id, "city", e.target.value)
+                    }
+                    className="mt-1 w-full h-10 px-3 rounded-lg border border-[#e9dece] bg-white outline-none text-sm"
+                  />
+                </div>
+
+                <div className="grid grid-cols-3 gap-2 mb-3">
+                  <div>
+                    <label className="text-xs text-gray-500">24K</label>
+                    <input
+                      type="number"
+                      value={city.gold24}
+                      onChange={(e) =>
+                        handleCityFieldChange(city.id, "gold24", e.target.value)
+                      }
+                      className="mt-1 w-full h-10 px-2 rounded-lg border border-[#e9dece] bg-white outline-none text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs text-gray-500">22K</label>
+                    <input
+                      type="number"
+                      value={city.gold22}
+                      onChange={(e) =>
+                        handleCityFieldChange(city.id, "gold22", e.target.value)
+                      }
+                      className="mt-1 w-full h-10 px-2 rounded-lg border border-[#e9dece] bg-white outline-none text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs text-gray-500">18K</label>
+                    <input
+                      type="number"
+                      value={city.gold18}
+                      onChange={(e) =>
+                        handleCityFieldChange(city.id, "gold18", e.target.value)
+                      }
+                      className="mt-1 w-full h-10 px-2 rounded-lg border border-[#e9dece] bg-white outline-none text-sm"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => saveCityRow(city)}
+                    disabled={savingCityId === city.id}
+                    className="flex-1 flex items-center justify-center gap-2 h-10 rounded-lg bg-[#c8a24a] text-white text-sm font-medium disabled:opacity-60"
+                  >
+                    <Save size={14} />
+                    Save
+                  </button>
+                  <button
+                    onClick={() => deleteCityRow(city.id, city.city)}
+                    className="flex-1 flex items-center justify-center gap-2 h-10 rounded-lg bg-red-500 text-white text-sm font-medium"
+                  >
+                    <Trash2 size={14} />
+                    Delete
+                  </button>
+                </div>
+              </div>
+            ))}
+
+            {/* ADD NEW CITY - MOBILE */}
+            <div className="rounded-2xl border border-dashed border-[#e4d6be] bg-white p-4">
+              <p className="text-sm font-medium text-[#5f4712] mb-3">Add New City</p>
+
+              <div className="mb-3">
+                <input
+                  placeholder="City name"
+                  value={newCity.city}
+                  onChange={(e) =>
+                    setNewCity({ ...newCity, city: e.target.value })
+                  }
+                  className="w-full h-10 px-3 rounded-lg border border-[#e9dece] bg-[#fcfbf8] outline-none text-sm"
+                />
+              </div>
+
+              <div className="grid grid-cols-3 gap-2 mb-3">
+                <input
+                  type="number"
+                  placeholder="24k"
+                  value={newCity.gold24}
+                  onChange={(e) =>
+                    setNewCity({ ...newCity, gold24: e.target.value })
+                  }
+                  className="h-10 px-2 rounded-lg border border-[#e9dece] bg-[#fcfbf8] outline-none text-sm"
+                />
+                <input
+                  type="number"
+                  placeholder="22k"
+                  value={newCity.gold22}
+                  onChange={(e) =>
+                    setNewCity({ ...newCity, gold22: e.target.value })
+                  }
+                  className="h-10 px-2 rounded-lg border border-[#e9dece] bg-[#fcfbf8] outline-none text-sm"
+                />
+                <input
+                  type="number"
+                  placeholder="18k"
+                  value={newCity.gold18}
+                  onChange={(e) =>
+                    setNewCity({ ...newCity, gold18: e.target.value })
+                  }
+                  className="h-10 px-2 rounded-lg border border-[#e9dece] bg-[#fcfbf8] outline-none text-sm"
+                />
+              </div>
+
+              <button
+                onClick={addCityRow}
+                className="w-full flex items-center justify-center gap-2 h-10 rounded-lg bg-green-600 text-white text-sm font-medium"
+              >
+                <Plus size={14} />
+                Add City
+              </button>
+            </div>
           </div>
         </div>
       </div>
