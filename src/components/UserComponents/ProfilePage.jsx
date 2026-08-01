@@ -37,7 +37,7 @@ export default function ProfilePage() {
       profilePic: "",
     });
 
-    const navigate = useNavigate();
+    
 
   useEffect(() => {
 
@@ -520,108 +520,22 @@ const handleSave = async () => {
 
 </div>
 
-{/* ================= GOLD SCHEME ================= */}
 
-<div className="mt-8 pt-6 border-t border-[#f3ece1]">
+     {/* ================= RIGHT COLUMN ================= */}
 
-  <div className="flex items-center gap-2 mb-4">
+<div className="space-y-6">
 
-    <Gem className="text-[#c8a24a]" size={20} />
+  {/* ================= PROFILE ================= */}
 
-    <h3 className="text-lg font-semibold text-[#3f372f]">
-      My Gold Scheme
-    </h3>
-
-  </div>
-
-  {user?.activeScheme ? (
-
-    <div className="rounded-2xl bg-[#faf5ea] border border-[#eadbbf] p-4">
-
-      <p className="text-lg font-semibold text-[#3f372f]">
-        {user.activeScheme.schemeName}
-      </p>
-
-      <p className="text-sm text-[#8c7d69] mt-1">
-        ₹{user.activeScheme.monthlyAmount} / Month
-      </p>
-
-      <div className="flex justify-between mt-4 text-sm">
-
-        <span>
-          Status
-        </span>
-
-        <span className="font-medium text-green-600">
-          {user.activeScheme.status}
-        </span>
-
-      </div>
-
-      <div className="flex justify-between mt-2 text-sm">
-
-        <span>
-          Progress
-        </span>
-
-        <span className="font-medium">
-          {user.activeScheme.installmentsPaid}/11
-        </span>
-
-      </div>
-
-      <div className="w-full h-2 rounded-full bg-gray-200 mt-4">
-
-        <div
-          className="h-2 rounded-full bg-[#c8a24a]"
-          style={{
-            width: `${(user.activeScheme.installmentsPaid / 11) * 100}%`,
-          }}
-        />
-
-      </div>
-
-      <button
-        onClick={() => navigate("/schemes")}
-        className="mt-5 w-full h-11 rounded-xl bg-[#c8a24a] text-white flex items-center justify-center gap-2 hover:bg-[#b8923f] transition"
-      >
-        View Scheme
-        <ArrowRight size={18} />
-      </button>
-
-    </div>
-
-  ) : (
-
-    <div className="rounded-2xl border border-dashed border-[#e4d6be] p-5 text-center">
-
-      <p className="text-[#7b7065]">
-        No active Gold Scheme found.
-      </p>
-
-      <button
-        onClick={() => navigate("/schemes")}
-        className="mt-4 px-5 h-11 rounded-xl bg-[#c8a24a] text-white"
-      >
-        Explore Schemes
-      </button>
-
-    </div>
-
-  )}
-
-</div>
-        {/* ================= RIGHT SECTION ================= */}
-
-        <div
-          className="
-          bg-white
-          rounded-[30px]
-          border
-          border-[#eee3d2]
-          p-8
-          shadow-sm"
-        >
+  <div
+    className="
+    bg-white
+    rounded-[30px]
+    border
+    border-[#eee3d2]
+    p-8
+    shadow-sm"
+  >
 
           {/* TITLE */}
 
@@ -976,9 +890,108 @@ const handleSave = async () => {
           </button>
 
         </div>
+        {/* ================= GOLD SCHEME ================= */}
+<div
+  className="
+  bg-white
+  rounded-[30px]
+  border
+  border-[#eee3d2]
+  p-8
+  shadow-sm"
+>
+
+  <div className="flex items-center gap-2 mb-4">
+
+    <Gem className="text-[#c8a24a]" size={20} />
+
+    <h3 className="text-lg font-semibold text-[#3f372f]">
+      My Gold Scheme
+    </h3>
+
+  </div>
+
+  {user?.activeScheme ? (
+
+    <div className="rounded-2xl bg-[#faf5ea] border border-[#eadbbf] p-4">
+
+      <p className="text-lg font-semibold text-[#3f372f]">
+        {user.activeScheme.schemeName}
+      </p>
+
+      <p className="text-sm text-[#8c7d69] mt-1">
+        ₹{user.activeScheme.monthlyAmount} / Month
+      </p>
+
+      <div className="flex justify-between mt-4 text-sm">
+
+        <span>
+          Status
+        </span>
+
+        <span className="font-medium text-green-600">
+          {user.activeScheme.status}
+        </span>
 
       </div>
 
+      <div className="flex justify-between mt-2 text-sm">
+
+        <span>
+          Progress
+        </span>
+
+        <span className="font-medium">
+          {user.activeScheme.installmentsPaid}/11
+        </span>
+
+      </div>
+
+      <div className="w-full h-2 rounded-full bg-gray-200 mt-4">
+
+        <div
+          className="h-2 rounded-full bg-[#c8a24a]"
+          style={{
+            width: `${(user.activeScheme.installmentsPaid / 11) * 100}%`,
+          }}
+        />
+
+      </div>
+
+      <button
+        onClick={() => navigate("/schemes")}
+        className="mt-5 w-full h-11 rounded-xl bg-[#c8a24a] text-white flex items-center justify-center gap-2 hover:bg-[#b8923f] transition"
+      >
+        View Scheme
+        <ArrowRight size={18} />
+      </button>
+
+    </div>
+
+  ) : (
+
+    <div className="rounded-2xl border border-dashed border-[#e4d6be] p-5 text-center">
+
+      <p className="text-[#7b7065]">
+        No active Gold Scheme found.
+      </p>
+
+      <button
+        onClick={() => navigate("/schemes")}
+        className="mt-4 px-5 h-11 rounded-xl bg-[#c8a24a] text-white"
+      >
+        Explore Schemes
+      </button>
+
+    </div>
+
+  )}
+
+</div>
+
+      </div>
+
+    </div>
     </div>
   );
 }
