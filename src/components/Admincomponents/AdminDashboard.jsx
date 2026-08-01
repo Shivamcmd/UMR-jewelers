@@ -1,10 +1,13 @@
 import { useEffect,useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
 IndianRupee,
 ShoppingBag,
 Users,
 Package,
-
+ Gem,
+ArrowRight,
 } from "lucide-react";
 
 import {
@@ -18,6 +21,8 @@ Tooltip
 from "recharts";
 
 export default function AdminDashboard(){
+
+   const navigate = useNavigate();
 
 const [products,setProducts]=
 useState([]);
@@ -55,7 +60,10 @@ fetch(
 
 fetch(
 "https://umr-jewelers.onrender.com/categories"
-).then(r=>r.json())
+).then(r=>r.json()),
+
+  fetch("https://umr-jewelers.onrender.com/metalPrices"
+  ).then(r=>r.json()),
 
 ])
 
@@ -66,7 +74,7 @@ setUsers(u);
 setOrders(o);
 setReviews(r);
 setCategories(c);
-
+setMetalPrice(mp);
 });
 
 },[]);
@@ -448,6 +456,91 @@ p.category===item.slug
 }
 
 </div>
+
+</div>
+
+{/* GOLD RATES */}
+<div
+  className="
+  bg-white
+  rounded-[25px] sm:rounded-[35px]
+  border
+  border-[#ecd8a5]
+  p-4 sm:p-7
+  mt-8
+  shadow-[0_10px_30px_rgba(200,162,75,.08)]
+  "
+>
+
+  <div className="flex items-center justify-between mb-6">
+
+    <div className="flex items-center gap-2">
+      <Gem size={22} className="text-[#c8a24b]" />
+      <h2 className="text-xl sm:text-2xl font-bold text-[#5f4712]">
+        Gold Rates
+      </h2>
+    </div>
+
+    <button
+      onClick={() => navigate("/admin/gold-rates")}
+      className="
+      flex
+      items-center
+      gap-2
+      px-4
+      py-2
+      rounded-full
+      bg-[#c8a24b]
+      text-white
+      text-sm
+      font-medium
+      hover:bg-[#b8923f]
+      transition
+      "
+    >
+      Manage
+      <ArrowRight size={16} />
+    </button>
+
+  </div>
+
+  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+
+    <div className="rounded-2xl bg-[#fff8ef] border border-[#ecd8b0] p-4">
+      <p className="text-xs text-[#8c7650]">24K Gold</p>
+      <h3 className="mt-2 text-xl font-bold text-[#bf6f32]">
+        ₹{metalPrice?.gold?.["24k"] ?? "--"}
+      </h3>
+    </div>
+
+    <div className="rounded-2xl bg-[#fff8ef] border border-[#ecd8b0] p-4">
+      <p className="text-xs text-[#8c7650]">22K Gold</p>
+      <h3 className="mt-2 text-xl font-bold text-[#bf6f32]">
+        ₹{metalPrice?.gold?.["22k"] ?? "--"}
+      </h3>
+    </div>
+
+    <div className="rounded-2xl bg-[#fff8ef] border border-[#ecd8b0] p-4">
+      <p className="text-xs text-[#8c7650]">18K Gold</p>
+      <h3 className="mt-2 text-xl font-bold text-[#bf6f32]">
+        ₹{metalPrice?.gold?.["18k"] ?? "--"}
+      </h3>
+    </div>
+
+    <div className="rounded-2xl bg-gray-50 border border-gray-200 p-4">
+      <p className="text-xs text-[#8c7650]">Silver</p>
+      <h3 className="mt-2 text-xl font-bold text-gray-700">
+        ₹{metalPrice?.silver ?? "--"}
+      </h3>
+    </div>
+
+  </div>
+
+  {metalPrice?.updatedAt && (
+    <p className="text-xs text-gray-400 mt-4">
+      Last updated: {metalPrice.updatedAt}
+    </p>
+  )}
 
 </div>
 

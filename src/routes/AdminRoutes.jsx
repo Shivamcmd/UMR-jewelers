@@ -23,6 +23,7 @@ import AdminProducts from "../components/Admincomponents/AdminProducts";
 import AdminOrders from "../components/Admincomponents/AdminOrders";
 import AdminUsers from "../components/Admincomponents/AdminUsers";
 import AdminProfile from "../components/Admincomponents/AdminProfile";
+import AdminGoldRates from "../components/Admincomponents/AdminGoldRates";
 import ScrollToTopButton from "../components/ScrollToTopButton";
 
 const menu = [
@@ -49,12 +50,18 @@ const menu = [
     path: "/admin/users",
     icon: Users,
   },
+  {
+    name: "Gold Rates",           
+    path: "/admin/gold-rates",
+    icon: Gem,
+  },
 
   {
     name: "Profile",
     path: "/admin/profile",
     icon: UserCircle,
   },
+  
 ];
 
 export default function AdminRoutes() {
@@ -334,6 +341,11 @@ element={<AdminProducts />}
 path="orders"
 element={<AdminOrders />}
 />
+
+<Route
+ path="gold-rates"
+element={<AdminGoldRates />}
+ />  
 
 <Route
 path="users"
