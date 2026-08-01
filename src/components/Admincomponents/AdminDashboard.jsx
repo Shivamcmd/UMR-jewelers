@@ -112,6 +112,78 @@ sum+item.total,
 0
 
 );
+{/* GOLD SCHEMES */}
+<div
+  className="
+  bg-white
+  rounded-[25px] sm:rounded-[35px]
+  border
+  border-[#ecd8a5]
+  p-4 sm:p-7
+  mt-8
+  shadow-[0_10px_30px_rgba(200,162,75,.08)]
+  "
+>
+
+  <div className="flex items-center justify-between mb-6">
+
+    <div className="flex items-center gap-2">
+      <Gem size={22} className="text-[#c8a24b]" />
+      <h2 className="text-xl sm:text-2xl font-bold text-[#5f4712]">
+        Gold Schemes
+      </h2>
+    </div>
+
+    <button
+      onClick={() => navigate("/admin/schemes")}
+      className="
+      flex
+      items-center
+      gap-2
+      px-4
+      py-2
+      rounded-full
+      bg-[#c8a24b]
+      text-white
+      text-sm
+      font-medium
+      hover:bg-[#b8923f]
+      transition
+      "
+    >
+      Manage
+      <ArrowRight size={16} />
+    </button>
+
+  </div>
+
+  <div className="grid grid-cols-3 gap-4">
+
+    <div className="rounded-2xl bg-[#fff8ef] border border-[#ecd8b0] p-4">
+      <p className="text-xs text-[#8c7650]">Total Enrolled</p>
+      <h3 className="mt-2 text-xl font-bold text-[#bf6f32]">
+        {totalSchemeUsers}
+      </h3>
+    </div>
+
+    <div className="rounded-2xl bg-[#fff8ef] border border-[#ecd8b0] p-4">
+      <p className="text-xs text-[#8c7650]">Active Schemes</p>
+      <h3 className="mt-2 text-xl font-bold text-[#bf6f32]">
+        {activeSchemesCount}
+      </h3>
+    </div>
+
+    <div className="rounded-2xl bg-[#fff8ef] border border-[#ecd8b0] p-4">
+      <p className="text-xs text-[#8c7650]">Total Collected</p>
+      <h3 className="mt-2 text-xl font-bold text-[#bf6f32]">
+        ₹{totalSchemeCollected.toLocaleString("en-IN")}
+      </h3>
+    </div>
+
+  </div>
+
+</div>
+
 
 const cards=[
 
