@@ -96,69 +96,51 @@ if (!window.Razorpay) {
     name: "UMR Jewellers",
     description: selectedScheme.name,
 
-    handler: async function (response) {
-      try {
-        const res = await fetch(
-          `https://umr-jewelers.onrender.com/users/${user.id}`
-        );
+ handler: async function (response) {
+  try {
+    const res = await fetch(
+      `https://umr-jewelers.onrender.com/users/${user.id}`
+    );
+    const userData = await res.json();
 
-        const userData = await res.json();
+    const updatedScheme = {
+      ...userData.activeScheme,
+      installmentsPaid: userData.activeScheme.installmentsPaid + 1,
+      installments: [
+        ...userData.activeScheme.installments,
+        {
+          month: userData.activeScheme.installmentsPaid + 1,
+          amount: userData.activeScheme.monthlyAmount,
+          paymentId: response.razorpay_payment_id,
+          date: new Date().toLocaleString(),
+        },
+      ],
+    };
 
-      const activeScheme = {
-  ...schemeOrder,
-
-  razorpayPaymentId: response.razorpay_payment_id,
-
-  installmentsPaid: 1,
-
-  installments: [
-    {
-      month: 1,
-      amount: selectedScheme.amount,
-      paymentId: response.razorpay_payment_id,
-      date: new Date().toLocaleString(),
-    },
-  ],
-};
-
-        await fetch(
-          `https://umr-jewelers.onrender.com/users/${user.id}`,
-          {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-            },
-           body: JSON.stringify({
-  activeScheme,
-}),
-          }
-        );
-
-     localStorage.setItem(
-  "user",
-  JSON.stringify({
-    ...userData,
-    activeScheme,
-  })
-);
-
-        toast.success("Scheme Joined Successfully 🎉");
-
-        setShowModal(false);
-
-        setActiveScheme(activeScheme);
-
-setUser({
-  ...userData,
-  activeScheme,
-});
-
-navigate("/schemes");
-      } catch (err) {
-        console.log(err);
-        toast.error("Something went wrong");
+    // ONE PATCH only — this is the one that should persist
+    await fetch(
+      `https://umr-jewelers.onrender.com/users/${user.id}`,
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ activeScheme: updatedScheme }),
       }
-    },
+    );
+
+    setActiveScheme(updatedScheme);
+    setUser({ ...userData, activeScheme: updatedScheme });
+
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ ...userData, activeScheme: updatedScheme })
+    );
+
+    toast.success("Installment Paid Successfully 🎉");
+  } catch (err) {
+    console.error(err);
+    toast.error("Something went wrong");
+  }
+},
 
     theme: {
       color: "#c8a24b",
