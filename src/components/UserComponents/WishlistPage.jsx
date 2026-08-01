@@ -212,7 +212,7 @@ const {
 
             <button
               onClick={() =>
-                navigate("/shop")
+                navigate("/category/necklace-sets")
               }
               className="mt-6
               bg-gradient-to-r

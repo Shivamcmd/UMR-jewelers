@@ -157,7 +157,7 @@ shadow-[0_10px_40px_rgba(0,0,0,0.04)]"
 
             <button
               onClick={() =>
-                navigate("/")
+                navigate("/category/necklace-sets")
               }
               className="mt-8
               px-7 h-14
