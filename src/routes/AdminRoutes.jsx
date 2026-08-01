@@ -4,6 +4,7 @@ import {
   ShoppingCart,
   Users,
   UserCircle,
+  Gem,        
   Menu,
   X
 } from "lucide-react";
