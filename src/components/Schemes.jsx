@@ -181,7 +181,20 @@ handler: async function (response) {
     const res = await fetch(
       `https://umr-jewelers.onrender.com/users/${user.id}`
     );
+
+    if (!res.ok) {
+      toast.error("Session expired. Please login again.");
+      localStorage.removeItem("user");
+      navigate("/login"); // adjust to your actual login route
+      return;
+    }
+
     const userData = await res.json();
+
+    if (!userData || !userData.activeScheme) {
+      toast.error("Could not find your active scheme. Please refresh and try again.");
+      return;
+    }
 
     const updatedScheme = {
       ...userData.activeScheme,
@@ -197,7 +210,6 @@ handler: async function (response) {
       ],
     };
 
-    // ✅ ONLY ONE PATCH — do not send another PATCH after this
     await fetch(
       `https://umr-jewelers.onrender.com/users/${user.id}`,
       {
@@ -209,12 +221,7 @@ handler: async function (response) {
 
     setActiveScheme(updatedScheme);
     setUser({ ...userData, activeScheme: updatedScheme });
-
-    localStorage.setItem(
-      "user",
-      JSON.stringify({ ...userData, activeScheme: updatedScheme })
-    );
-
+    localStorage.setItem("user", JSON.stringify({ ...userData, activeScheme: updatedScheme }));
     toast.success("Installment Paid Successfully 🎉");
   } catch (err) {
     console.error(err);
