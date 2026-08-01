@@ -185,10 +185,28 @@ loadUser
 },[]);
 
 useEffect(() => {
-  fetch("https://umr-jewelers.onrender.com/metalPrices")
-    .then((res) => res.json())
-    .then((data) => setMetalPrice(data))
-    .catch((err) => console.log(err));
+  const fetchMetalPrice = () => {
+    fetch("https://umr-jewelers.onrender.com/metalPrices")
+      .then((res) => res.json())
+      .then((data) => setMetalPrice(data))
+      .catch((err) => console.log(err));
+  };
+
+  fetchMetalPrice();
+
+  const handleMetalUpdate = (e) => {
+    if (e.detail) {
+      setMetalPrice(e.detail);
+    } else {
+      fetchMetalPrice();
+    }
+  };
+
+  window.addEventListener("metalPriceUpdated", handleMetalUpdate);
+
+  return () => {
+    window.removeEventListener("metalPriceUpdated", handleMetalUpdate);
+  };
 }, []);
 
 useEffect(() => {

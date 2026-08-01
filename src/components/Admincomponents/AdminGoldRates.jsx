@@ -76,6 +76,11 @@ export default function AdminGoldRates() {
 
       const data = await res.json();
       setMetalPrice(data);
+
+       window.dispatchEvent(
+      new CustomEvent("metalPriceUpdated", { detail: data })
+    );
+    
       toast.success("Metal prices updated");
     } catch (err) {
       console.error(err);
