@@ -25,6 +25,7 @@ import AdminOrders from "../components/Admincomponents/AdminOrders";
 import AdminUsers from "../components/Admincomponents/AdminUsers";
 import AdminProfile from "../components/Admincomponents/AdminProfile";
 import AdminGoldRates from "../components/Admincomponents/AdminGoldRates";
+import AdminSchemes from "../components/Admincomponents/AdminSchemes";
 import ScrollToTopButton from "../components/ScrollToTopButton";
 
 const menu = [
@@ -56,6 +57,11 @@ const menu = [
     path: "/admin/gold-rates",
     icon: Gem,
   },
+  {
+  name: "Schemes",
+  path: "/admin/schemes",
+  icon: Gem,   // already imported hai
+},
 
   {
     name: "Profile",
@@ -333,11 +339,18 @@ index
 element={<AdminDashboard />}
 />
 
+
+
 <Route
 path="products"
 element={<AdminProducts />}
 />
 
+<Route
+ path="schemes"
+ element={<AdminSchemes />}
+  />
+  
 <Route
 path="orders"
 element={<AdminOrders />}
