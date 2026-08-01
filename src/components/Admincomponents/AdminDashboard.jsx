@@ -39,6 +39,8 @@ useState([]);
 const [categories,setCategories]=
 useState([]);
 
+const [metalPrice,setMetalPrice] = useState(null); 
+
 useEffect(()=>{
 Promise.all([
 
@@ -67,7 +69,7 @@ fetch(
 
 ])
 
-.then(([p,u,o,r,c])=>{
+.then(([p,u,o,r,c,mp])=>{
 
 setProducts(p);
 setUsers(u);
