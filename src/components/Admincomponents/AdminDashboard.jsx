@@ -112,6 +112,20 @@ sum+item.total,
 0
 
 );
+
+const schemeUsers = users.filter((u) => u.activeScheme);
+
+const totalSchemeUsers = schemeUsers.length;
+
+const totalSchemeCollected = schemeUsers.reduce(
+  (sum, u) => sum + (u.activeScheme.monthlyAmount * u.activeScheme.installmentsPaid),
+  0
+);
+
+const activeSchemesCount = schemeUsers.filter(
+  (u) => u.activeScheme.status === "Active"
+).length;
+
 {/* GOLD SCHEMES */}
 <div
   className="
