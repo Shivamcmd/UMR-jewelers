@@ -85,28 +85,50 @@ export default function ProfilePage() {
 
   // ================= PROFILE IMAGE =================
 
-  const handleImage =
-    (e) => {
+  const handleImage = (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
 
-      const file =
-        e.target.files[0];
+  const reader = new FileReader();
 
-      if (!file) return;
+  reader.onload = (event) => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      const MAX_SIZE = 300; // px
 
-      const reader =
-        new FileReader();
+      let { width, height } = img;
+      if (width > height) {
+        if (width > MAX_SIZE) {
+          height *= MAX_SIZE / width;
+          width = MAX_SIZE;
+        }
+      } else {
+        if (height > MAX_SIZE) {
+          width *= MAX_SIZE / height;
+          height = MAX_SIZE;
+        }
+      }
 
-      reader.onloadend = () => {
+      canvas.width = width;
+      canvas.height = height;
 
-        setFormData({
-          ...formData,
-          profilePic:
-            reader.result,
-        });
-      };
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, width, height);
 
-      reader.readAsDataURL(file);
+      // 0.6 quality JPEG — chhota size, achha dikhta hai
+      const compressedBase64 = canvas.toDataURL("image/jpeg", 0.6);
+
+      setFormData((prev) => ({
+        ...prev,
+        profilePic: compressedBase64,
+      }));
     };
+    img.src = event.target.result;
+  };
+
+  reader.readAsDataURL(file);
+};
 
   // ================= SAVE PROFILE =================
 
