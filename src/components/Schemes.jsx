@@ -233,6 +233,25 @@ await fetch(
     }),
   }
 );
+
+const patchRes = await fetch(
+  `https://umr-jewelers.onrender.com/users/${user.id}`,
+  {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      activeScheme,
+    }),
+  }
+);
+
+console.log("PATCH STATUS:", patchRes.status);
+
+const patchData = await patchRes.json();
+console.log("PATCH RESPONSE:", patchData);
+
 setActiveScheme(updatedScheme);
 
 setUser({
