@@ -85,9 +85,17 @@ export default function ProfilePage() {
 
   // ================= PROFILE IMAGE =================
 
-  const handleImage = (e) => {
+const MAX_FILE_SIZE_MB = 2; // original upload file size limit
+
+const handleImage = (e) => {
   const file = e.target.files[0];
   if (!file) return;
+
+  // 1. Original file size check
+  if (file.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
+    toast.error(`Image too large. Please select an image under ${MAX_FILE_SIZE_MB}MB`);
+    return;
+  }
 
   const reader = new FileReader();
 
@@ -95,7 +103,7 @@ export default function ProfilePage() {
     const img = new Image();
     img.onload = () => {
       const canvas = document.createElement("canvas");
-      const MAX_SIZE = 300; // px
+      const MAX_SIZE = 300; // final resized dimension in px
 
       let { width, height } = img;
       if (width > height) {
@@ -116,8 +124,16 @@ export default function ProfilePage() {
       const ctx = canvas.getContext("2d");
       ctx.drawImage(img, 0, 0, width, height);
 
-      // 0.6 quality JPEG — chhota size, achha dikhta hai
       const compressedBase64 = canvas.toDataURL("image/jpeg", 0.6);
+
+      // 2. Final compressed size check (hard limit — base64 ban jaane ke baad)
+      const sizeInBytes = compressedBase64.length * 0.75; // base64 → approx bytes
+      const sizeInKB = sizeInBytes / 1024;
+
+      if (sizeInKB > 200) {
+        toast.error("Image still too large after compression. Try a smaller/simpler image.");
+        return;
+      }
 
       setFormData((prev) => ({
         ...prev,
