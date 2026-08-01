@@ -3,6 +3,9 @@ import {
   ArrowDownRight,
 } from "lucide-react";
 
+import gold24k from "../assets/24kgold.jpg";
+import silverImg from "../assets/silver.jpg";
+
 export default function MetalCards({ metalPrice }) {
   if (!metalPrice) return null;
 
@@ -12,7 +15,7 @@ const cards = [
     value: metalPrice.gold?.["24k"],
     change: "+₹25",
     positive: true,
-    image: "/src/assets/24kgold.jpg",
+    image: gold24k,          // ✅ imported variable
     color: "text-[#bf6f32]",
     bg: "bg-[#fff8ef]",
     border: "border-[#ecd8b0]",
@@ -22,7 +25,7 @@ const cards = [
     value: metalPrice.gold?.["22k"],
     change: "+₹18",
     positive: true,
-    image: "/src/assets/24kgold.jpg",
+    image: gold24k,          // ✅ same image reuse ho toh bhi imported variable use karo
     color: "text-[#bf6f32]",
     bg: "bg-[#fff8ef]",
     border: "border-[#ecd8b0]",
@@ -32,7 +35,7 @@ const cards = [
     value: metalPrice.gold?.["18k"],
     change: "+₹12",
     positive: true,
-    image: "/src/assets/24kgold.jpg",
+    image: gold24k,
     color: "text-[#bf6f32]",
     bg: "bg-[#fff8ef]",
     border: "border-[#ecd8b0]",
@@ -42,7 +45,7 @@ const cards = [
     value: metalPrice.silver,
     change: "-₹1",
     positive: false,
-    image: "/src/assets/silver.jpg",
+    image: silverImg,        // ✅
     color: "text-gray-700",
     bg: "bg-gray-50",
     border: "border-gray-200",
