@@ -26,6 +26,8 @@ export default function ProfilePage() {
     useState(null);
     const navigate = useNavigate();
 
+    const [isEditing, setIsEditing] = useState(false);
+
   const [formData, setFormData] =
     useState({
       name: "",
@@ -263,6 +265,7 @@ const handleSave = async () => {
           type="file"
           accept="image/*"
           hidden
+          disabled={!isEditing}
           onChange={handleImage}
         />
 
@@ -616,6 +619,7 @@ const handleSave = async () => {
                 <input
                   type="text"
                   name="name"
+                  disabled={!isEditing}
                   value={
                     formData.name
                   }
@@ -675,6 +679,7 @@ const handleSave = async () => {
                 <input
                   type="email"
                   name="email"
+                  disabled={!isEditing}
                   value={
                     formData.email
                   }
@@ -734,6 +739,7 @@ const handleSave = async () => {
                 <input
                   type="text"
                   name="phone"
+                  disabled={!isEditing}
                   value={
                     formData.phone
                   }
@@ -793,6 +799,7 @@ const handleSave = async () => {
                 <input
                   type="text"
                   name="city"
+                  disabled={!isEditing}
                   value={
                     formData.city
                   }
@@ -837,6 +844,7 @@ const handleSave = async () => {
             <textarea
               rows="3"
               name="bio"
+              disabled={!isEditing}
               value={
                 formData.bio
               }
@@ -864,30 +872,54 @@ const handleSave = async () => {
 
           {/* SAVE BUTTON */}
 
-          <button
-            onClick={handleSave}
+          {/* EDIT / SAVE BUTTON */}
 
-            className="
-            mt-8
-            h-[52px]
-            px-8
-            rounded-full
-            bg-[#c8a24a]
-            text-white
-            font-medium
-            flex
-            items-center
-            gap-3
-            hover:scale-[1.02]
-            transition-all
-            shadow-[0_10px_25px_rgba(200,162,74,0.25)]"
-          >
-
-            <Save size={18} />
-
-            Save Changes
-
-          </button>
+          {!isEditing ? (
+            <button
+              onClick={() => setIsEditing(true)}
+              className="
+              mt-8
+              h-[52px]
+              px-8
+              rounded-full
+              bg-white
+              border
+              border-[#c8a24a]
+              text-[#c8a24a]
+              font-medium
+              flex
+              items-center
+              gap-3
+              hover:bg-[#faf4e7]
+              transition-all"
+            >
+              Edit Profile
+            </button>
+          ) : (
+            <button
+              onClick={async () => {
+                await handleSave();
+                setIsEditing(false);
+              }}
+              className="
+              mt-8
+              h-[52px]
+              px-8
+              rounded-full
+              bg-[#c8a24a]
+              text-white
+              font-medium
+              flex
+              items-center
+              gap-3
+              hover:scale-[1.02]
+              transition-all
+              shadow-[0_10px_25px_rgba(200,162,74,0.25)]"
+            >
+              <Save size={18} />
+              Save Changes
+            </button>
+          )}
 
         </div>
         {/* ================= GOLD SCHEME ================= */}
